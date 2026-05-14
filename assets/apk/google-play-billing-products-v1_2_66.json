@@ -1,0 +1,40 @@
+{
+  "version": "1.2.66",
+  "packageName": "com.ilhanbeluk.akillizikirhatim",
+  "products": [
+    {
+      "productId": "support_25",
+      "type": "one_time_product",
+      "title": "Gönüllü Destek 25 TL",
+      "consumable": true,
+      "entitlement": "none"
+    },
+    {
+      "productId": "support_50",
+      "type": "one_time_product",
+      "title": "Gönüllü Destek 50 TL",
+      "consumable": true,
+      "entitlement": "none"
+    },
+    {
+      "productId": "support_100",
+      "type": "one_time_product",
+      "title": "Gönüllü Destek 100 TL",
+      "consumable": true,
+      "entitlement": "none"
+    },
+    {
+      "productId": "support_250",
+      "type": "one_time_product",
+      "title": "Gönüllü Destek 250 TL",
+      "consumable": true,
+      "entitlement": "none"
+    }
+  ],
+  "policyNotes": [
+    "Uygulama ücretsiz ve reklamsız kalır.",
+    "Destek ürünleri hiçbir premium özellik, rozet, ayrıcalık veya özel içerik açmaz.",
+    "Destek satın alımı yalnızca teşekkür mesajı üretir.",
+    "IBAN, havale/EFT veya harici ödeme yönlendirmesi kullanılmaz."
+  ]
+}

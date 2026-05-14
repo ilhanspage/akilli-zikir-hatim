@@ -1,0 +1,26 @@
+AKILLI ZİKİR & HATİM v1.0.0 KURULUM NOTU
+
+1) ZIP içindeki dosyaları zikir.next-sosyal.com alan adının public_html / ana dizinine yükleyin.
+2) Tarayıcıdan şu adresi açın:
+   https://zikir.next-sosyal.com/install.php
+3) Veritabanı bilgileri hazır gelecektir:
+   - database: zikir
+   - user: zikir
+   - şifre: kurulum formunda hazırdır
+4) Admin kullanıcı adı ve admin şifresini belirleyin.
+5) Kurulum tamamlanınca:
+   - Mobil uygulama: https://zikir.next-sosyal.com/
+   - Admin panel: https://zikir.next-sosyal.com/admin/
+6) Güvenlik için kurulumdan sonra install.php dosyasını silin veya adını değiştirin.
+
+ÖNEMLİ MANTIK
+- Mobil taraf PWA/offline mantığıyla çalışır.
+- Kullanıcı internet yokken zikir çekebilir, geçmiş ve hedef takibi kullanabilir.
+- İnternet gelince bekleyen online katkılar senkronize edilir.
+- Admin panelden hazır zikirler, toplu zikir, dua halkası, hatim ve günlük içerik yönetilir.
+- Sonraki sürümler update/üstüne yükleme mantığıyla hazırlanacaktır.
+
+APK HAZIRLIK
+- manifest.json ve service-worker.js hazırdır.
+- Mobil taraf statik PWA kabuğu olarak ayrılmıştır.
+- İleride Capacitor ile APK/AAB paketine çevirmeye uygundur.

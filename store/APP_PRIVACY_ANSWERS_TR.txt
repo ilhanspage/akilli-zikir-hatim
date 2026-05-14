@@ -1,0 +1,17 @@
+App Store / Google Play Gizlilik Cevap Taslağı
+
+Veri türleri:
+- Kullanıcı takma adı: topluluk özellikleri için kullanılabilir.
+- Dua isteği içerikleri: kullanıcı isteğiyle paylaşılır.
+- Zikir/hatim katkı kayıtları: topluluk takibi için kullanılabilir.
+- Cihazdaki zikir geçmişi: offline olarak cihazda saklanır.
+
+Reklam:
+- Uygulamada reklam yoktur.
+
+Takip:
+- Kullanıcıyı reklam veya üçüncü taraf takip amacıyla izleme yapılmaz.
+
+Silme:
+- Offline veriler cihazdan temizlenebilir.
+- Topluluk verileri için destek/veri silme talebi alınabilir.

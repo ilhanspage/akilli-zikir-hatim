@@ -1,0 +1,25 @@
+{
+  "publisher_developer": "İlhan BELUK",
+  "donation_products": [
+    {
+      "id": "support_25",
+      "title": "25 TL Gönüllü Katkı",
+      "type": "inapp"
+    },
+    {
+      "id": "support_50",
+      "title": "50 TL Gönüllü Katkı",
+      "type": "inapp"
+    },
+    {
+      "id": "support_100",
+      "title": "100 TL Gönüllü Katkı",
+      "type": "inapp"
+    },
+    {
+      "id": "support_250",
+      "title": "250 TL Gönüllü Katkı",
+      "type": "inapp"
+    }
+  ]
+}

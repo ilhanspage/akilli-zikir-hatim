@@ -1,0 +1,13 @@
+Copyright © 2026 İlhan BELUK. Tüm hakları saklıdır.
+
+Bu proje kaynak kodu yalnızca inceleme amacıyla public olarak paylaşılmıştır.
+
+İzinsiz kopyalanamaz.
+İzinsiz dağıtılamaz.
+İzinsiz satılamaz.
+Ticari amaçla kullanılamaz.
+Türetilmiş çalışma oluşturulamaz.
+Uygulama adı, tasarımı, kaynak kodu ve proje yapısı izinsiz kullanılamaz.
+
+Yayımcı / Geliştirici:
+İlhan BELUK

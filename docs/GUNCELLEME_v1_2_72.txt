@@ -1,0 +1,30 @@
+Akıllı Zikir & Hatim v1.2.72
+
+Konu: GitHub Actions APK/AAB Build Paketi
+
+Yapılanlar:
+- GitHub Actions workflow eklendi:
+  .github/workflows/android-build.yml
+- Workflow debug APK, release APK ve release AAB üretir.
+- Play Console için release AAB artifact olarak alınır.
+- GitHub Secrets yoksa ilk çalıştırmada upload keystore otomatik üretilir.
+- Üretilen keystore ve credentials dosyası artifact olarak verilir; mutlaka indirilip saklanmalıdır.
+- Android app/build.gradle release signing destekli hale getirildi.
+- BuildConfig desteği açıldı.
+- Java/Kotlin hedefi 17 olarak ayarlandı.
+- Android sürümü 1.2.72 / versionCode 1272 yapıldı.
+- Gradle properties eklendi.
+- Google Play Billing ürün JSON'u v1.2.72 olarak eklendi.
+
+Korunanlar:
+- PWA/web uygulama mantığına dokunulmadı.
+- v1.2.70 Gizlilik/Destek premium açılır sayfa düzeni korunmuştur.
+- v1.2.69 modal data-route fix korunmuştur.
+- API/admin/veri/yasal metin içerikleri değiştirilmedi.
+
+Kurulum:
+1. ZIP'i site/proje kök dizinine yükleyip mevcut dosyaların üzerine yazdırın.
+2. Admin açıkken /update/updater.php dosyasını bir kez çalıştırın.
+3. Projeyi GitHub reposuna yükleyin.
+4. GitHub → Actions → Build Android APK and AAB → Run workflow.
+5. Artifacts bölümünden release AAB dosyasını indirin.

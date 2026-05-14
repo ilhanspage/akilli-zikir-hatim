@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <meta name="theme-color" content="#07372f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Reklamsız offline zikir, toplu dua ve hatim takip uygulaması. Yayımcı/Geliştirici: İlhan BELUK.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Akıllı Zikir & Hatim">
+  <meta name="apple-mobile-web-app-title" content="Akıllı Zikir & Hatim">
+  <link rel="apple-touch-icon" sizes="180x180" href="/app/assets/icons/apple-touch-icon.png?v=20260512027200">
+  <link rel="icon" type="image/png" sizes="16x16" href="/app/assets/icons/favicon-16.png?v=20260512027200">
+  <link rel="icon" type="image/png" sizes="32x32" href="/app/assets/icons/favicon-32.png?v=20260512027200">
+  <link rel="icon" type="image/png" sizes="192x192" href="/app/assets/icons/icon-192.png?v=20260512027200">
+  <link rel="icon" type="image/png" sizes="512x512" href="/app/assets/icons/icon-512.png?v=20260512027200">
+  <link rel="manifest" href="/manifest.json?v=20260512027200">
+  <title>Akıllı Zikir & Hatim</title>
+<link rel="stylesheet" href="/app/assets/css/app.css?v=1.2.72">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
+
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" aria-label="Menü">☰</button>
+      <div class="brand-mini"><span class="moon">☾</span><span id="screenTitle">Akıllı Zikir & Hatim</span></div>
+      <button class="icon-btn" data-route="settings" aria-label="Ayarlar">⚙</button>
+    </header>
+
+    <main id="app" class="screen"></main>
+
+    <nav class="bottom-nav" aria-label="Alt Menü">
+      <button data-route="home" class="active"><span>⌂</span><small>Ana Sayfa</small></button>
+      <button data-route="counter"><span>◴</span><small>Sayaç</small></button>
+      <button data-route="zikir"><span>☾</span><small>Zikir</small></button>
+      <button data-route="dua"><span>♡</span><small>Dua</small></button>
+      <button data-route="hatim"><span>▤</span><small>Hatim</small></button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="/app/assets/js/app.js?v=1.2.72" defer></script>
+</body>
+</html>

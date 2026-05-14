@@ -1,0 +1,22 @@
+Gizlilik Politikası Taslağı
+
+Akıllı Zikir & Hatim uygulaması, kişisel zikir takibi, dua halkası ve hatim takibi amacıyla geliştirilmiştir.
+
+Toplanan / işlenen bilgiler:
+- Kullanıcının belirlediği takma ad
+- Toplu zikir katkıları
+- Dua isteği içerikleri
+- Hatim cüz katılım bilgileri
+- Cihaz üzerinde saklanan zikir geçmişi ve ayarlar
+
+Offline veriler:
+Kişisel sayaç geçmişi ve bazı tercihler cihazda/offline saklanabilir.
+
+Reklam:
+Uygulamada reklam bulunmamaktadır.
+
+Gönüllü katkı:
+Kullanıcı isterse uygulamanın geliştirilmesine gönüllü katkıda bulunabilir.
+
+İletişim:
+Yayımcı / Geliştirici: İlhan BELUK

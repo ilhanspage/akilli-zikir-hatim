@@ -1,0 +1,54 @@
+name: iOS TestFlight Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'testflight, app_store veya adhoc'
+        required: true
+        default: 'testflight'
+      version_name:
+        description: 'Versiyon adı'
+        required: true
+        default: '1.0.39'
+      build_number:
+        description: 'Build numarası'
+        required: true
+        default: '39'
+      request_uid:
+        description: 'Admin build talep UID'
+        required: false
+        default: ''
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: apk
+        run: npm install
+
+      - name: Add iOS platform
+        working-directory: apk
+        run: npx cap add ios || true
+
+      - name: Sync Capacitor iOS
+        working-directory: apk
+        run: npx cap sync ios
+
+      # Not:
+      # Gerçek TestFlight/App Store build için Apple signing certificate,
+      # provisioning profile ve App Store Connect API key GitHub Secrets olarak tanımlanmalıdır.
+
+      # Örnek callback:
+      # curl -X POST "$IOS_BUILD_CALLBACK_URL?token=$IOS_BUILD_CALLBACK_TOKEN" \
+      #   -H "Content-Type: application/json" \
+      #   -d '{"request_uid":"${{ github.event.inputs.request_uid }}","status":"completed","artifact_url":"TESTFLIGHT_OR_ARTIFACT_URL"}'

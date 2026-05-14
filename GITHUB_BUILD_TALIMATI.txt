@@ -1,0 +1,32 @@
+AKILLI ZIKIR & HATIM - GITHUB APK/AAB BUILD PAKETI v1.2.72
+
+Bu ZIP tam proje paketidir. GitHub'a komple yuklenecek dosyalarin tamamini icerir.
+
+GitHub'da gorunmesi gereken ana yapi:
+.github/workflows/android-build.yml
+android/AkilliZikirHatim/
+admin/
+api/
+app/
+assets/
+database/
+docs/
+update/
+manifest.json
+service-worker.js
+install.php
+
+Ne yapacaksin:
+1. Bu ZIP'i bilgisayarinda bir klasore ac.
+2. GitHub'da yeni repo olustur veya mevcut repoyu ac.
+3. ZIP'ten cikan TUM dosya ve klasorleri repoya yukle.
+4. GitHub > Actions > Build Android APK and AAB > Run workflow.
+5. Build bitince Artifacts bolumunden:
+   - akilli-zikir-release-aab-play-console
+   dosyasini indir.
+6. Play Console'a yuklenecek dosya bu artifact icindeki .aab dosyasidir.
+
+Cok onemli:
+Ilk build secrets yoksa upload keystore otomatik uretilir.
+SAVE-THIS-upload-keystore-and-credentials artifact'ini mutlaka indir ve sakla.
+Bunu kaybedersen Google Play guncellemelerinde sorun yasarsin.

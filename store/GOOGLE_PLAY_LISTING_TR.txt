@@ -1,0 +1,25 @@
+Google Play Mağaza Metni - TR
+
+Uygulama Adı:
+Akıllı Zikir & Hatim
+
+Kısa Açıklama:
+Reklamsız zikir sayacı, dua halkası ve hatim takibi.
+
+Uzun Açıklama:
+Akıllı Zikir & Hatim; kişisel zikir sayacı, günlük hedef takibi, toplu zikir halkaları, dua halkası ve hatim takibi için hazırlanmış mobil odaklı, reklamsız bir uygulamadır.
+
+Özellikler:
+- Offline çalışan zikir sayacı
+- Günlük zikir hedefleri
+- Kişisel vird ve tesbihat akışı
+- Toplu zikir halkaları
+- Toplu dua halkası
+- 30 cüz hatim takibi
+- İstatistik ve rozet sistemi
+- Bildirim ve hatırlatıcılar
+- Reklamsız kullanım
+- Gönüllü katkı desteği
+
+Yayımcı / Geliştirici:
+İlhan BELUK

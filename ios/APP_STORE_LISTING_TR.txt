@@ -1,0 +1,26 @@
+Uygulama Adı:
+Akıllı Zikir & Hatim
+
+Alt Başlık:
+Reklamsız zikir, dua ve hatim takibi
+
+Kısa Açıklama:
+Akıllı Zikir & Hatim; kişisel zikir sayacı, toplu zikir halkaları, dua halkası ve hatim takibi için hazırlanmış mobil odaklı, reklamsız bir uygulamadır.
+
+Uzun Açıklama:
+Akıllı Zikir & Hatim, günlük manevi takibinizi sade ve kullanışlı bir mobil deneyimle desteklemek için hazırlanmıştır.
+
+Öne çıkan özellikler:
+- Offline çalışan kişisel zikir sayacı
+- Günlük hedef ve plan takibi
+- Toplu zikir halkaları
+- Toplu dua halkası
+- 30 cüz online hatim takibi
+- Kişisel vird ve tesbihat akışı
+- Zikir hatırlatıcıları
+- İstatistik ve rozet sistemi
+- Reklamsız kullanım
+- Gönüllü katkı desteği
+
+Yayımcı / Geliştirici:
+İlhan BELUK

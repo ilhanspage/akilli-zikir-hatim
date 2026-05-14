@@ -1,0 +1,65 @@
+name: Android APK Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'debug_apk, release_apk veya play_aab'
+        required: true
+        default: 'debug_apk'
+      version_name:
+        description: 'Versiyon adı'
+        required: true
+        default: '1.0.36'
+      version_code:
+        description: 'Versiyon kodu'
+        required: true
+        default: '36'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install dependencies
+        working-directory: apk
+        run: npm install
+
+      - name: Sync Capacitor
+        working-directory: apk
+        run: npx cap sync android
+
+      - name: Build debug APK
+        if: ${{ github.event.inputs.build_type == 'debug_apk' }}
+        working-directory: apk/android
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK artifact
+        if: ${{ github.event.inputs.build_type == 'debug_apk' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: akilli-zikir-hatim-debug-apk
+          path: apk/android/app/build/outputs/apk/debug/*.apk
+
+      # Release APK/AAB için keystore secret bilgileri ayrıca tanımlanmalıdır.
+
+
+      # Örnek callback bildirimi:
+      # - name: Notify callback
+      #   run: |
+      #     curl -X POST "$BUILD_CALLBACK_URL?token=$BUILD_CALLBACK_TOKEN" \
+      #       -H "Content-Type: application/json" \
+      #       -d '{"request_uid":"${{ github.event.inputs.request_uid }}","status":"completed","artifact_url":"ARTIFACT_URL"}'

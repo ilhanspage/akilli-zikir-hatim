@@ -1,0 +1,13 @@
+TestFlight Kontrol Listesi
+
+- Uygulama açılıyor mu?
+- Alt menüler çalışıyor mu?
+- Scroll sorunu var mı?
+- Zikir sayacı doğru çalışıyor mu?
+- Ses/titreşim ayarları çalışıyor mu?
+- Hatim cüz seçimi çalışıyor mu?
+- Dua ve toplu zikir ekranları çalışıyor mu?
+- Bildirim izni isteniyor mu?
+- Test bildirimi geliyor mu?
+- Gönüllü katkı alanı doğru görünüyor mu?
+- Yayımcı/Geliştirici: İlhan BELUK bilgisi görünüyor mu?

@@ -1,0 +1,16 @@
+Akıllı Zikir & Hatim v1.0.41 - Yayın Öncesi Kontrol
+
+Bu dosya geliştirici/admin içindir.
+
+Kontrol başlıkları:
+- Manifest / PWA dosyaları
+- İkon ve splash dosyaları
+- Gizlilik politikası / kullanım şartları / destek / veri silme sayfaları
+- Yayımcı / geliştirici bilgileri
+- Gönüllü katkı ayarları
+- Android APK hazırlığı
+- iOS TestFlight / App Store hazırlığı
+- Mağaza açıklama ve privacy cevap taslakları
+
+Admin panel:
+- /admin/?page=release_checklist

@@ -1,0 +1,20 @@
+{
+  "name": "akilli-zikir-hatim-apk",
+  "version": "1.0.36",
+  "private": true,
+  "description": "Akıllı Zikir & Hatim APK hazırlık dosyaları",
+  "scripts": {
+    "cap:init": "npx cap init Akıllı\\ Zikir\\ &\\ Hatim com.ilhanbeluk.akillizikirhatim --web-dir ../app",
+    "cap:add:android": "npx cap add android",
+    "cap:sync": "npx cap sync android",
+    "cap:open": "npx cap open android",
+    "build:admin-note": "echo \"APK build işlemi admin panelden webhook/GitHub Actions ile tetiklenebilir.\"",
+    "cap:build:debug": "cd .. && npx cap sync android && cd apk && echo Android Studio veya Gradle ile debug APK üretilecek"
+  },
+  "dependencies": {
+    "@capacitor/android": "latest",
+    "@capacitor/cli": "latest",
+    "@capacitor/core": "latest",
+    "@capacitor/local-notifications": "latest"
+  }
+}

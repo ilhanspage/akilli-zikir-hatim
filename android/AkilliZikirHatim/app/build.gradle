@@ -1,0 +1,77 @@
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+}
+
+def keystorePath = System.getenv("ANDROID_KEYSTORE_PATH")
+def keystorePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+def keyAlias = System.getenv("ANDROID_KEY_ALIAS")
+def keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+def hasReleaseSigning = keystorePath != null && keystorePath.trim() != "" &&
+        keystorePassword != null && keystorePassword.trim() != "" &&
+        keyAlias != null && keyAlias.trim() != "" &&
+        keyPassword != null && keyPassword.trim() != "" &&
+        file(keystorePath).exists()
+
+android {
+    namespace = "com.ilhanbeluk.akillizikirhatim"
+    compileSdk = 35
+
+    defaultConfig {
+        applicationId = "com.ilhanbeluk.akillizikirhatim"
+        minSdk = 23
+        targetSdk = 35
+        versionCode = 1272
+        versionName = "1.2.72"
+        buildConfigField("String", "WEB_URL", "\"https://zikir.next-sosyal.com/app/\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile = file(keystorePath)
+                storePassword = keystorePassword
+                alias = keyAlias
+                keyPassword = keyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
+        release {
+            minifyEnabled = false
+            shrinkResources = false
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.release
+            }
+        }
+    }
+
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+    }
+}
+
+dependencies {
+    implementation("androidx.core:core-ktx:1.15.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.android.billingclient:billing-ktx:8.3.0")
+}
