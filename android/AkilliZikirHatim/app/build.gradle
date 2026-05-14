@@ -3,15 +3,15 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-def keystorePath = System.getenv("ANDROID_KEYSTORE_PATH")
-def keystorePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
-def keyAlias = System.getenv("ANDROID_KEY_ALIAS")
-def keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
-def hasReleaseSigning = keystorePath != null && keystorePath.trim() != "" &&
-        keystorePassword != null && keystorePassword.trim() != "" &&
-        keyAlias != null && keyAlias.trim() != "" &&
-        keyPassword != null && keyPassword.trim() != "" &&
-        file(keystorePath).exists()
+def releaseKeystorePath = System.getenv("ANDROID_KEYSTORE_PATH")
+def releaseKeystorePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+def releaseKeyAlias = System.getenv("ANDROID_KEY_ALIAS")
+def releaseKeyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+def hasReleaseSigning = releaseKeystorePath != null && releaseKeystorePath.trim() != "" &&
+        releaseKeystorePassword != null && releaseKeystorePassword.trim() != "" &&
+        releaseKeyAlias != null && releaseKeyAlias.trim() != "" &&
+        releaseKeyPassword != null && releaseKeyPassword.trim() != "" &&
+        file(releaseKeystorePath).exists()
 
 android {
     namespace = "com.ilhanbeluk.akillizikirhatim"
@@ -21,8 +21,8 @@ android {
         applicationId = "com.ilhanbeluk.akillizikirhatim"
         minSdk = 23
         targetSdk = 35
-        versionCode = 1272
-        versionName = "1.2.72"
+        versionCode = 1273
+        versionName = "1.2.73"
         buildConfigField("String", "WEB_URL", "\"https://zikir.next-sosyal.com/app/\"")
     }
 
@@ -42,10 +42,10 @@ android {
     signingConfigs {
         release {
             if (hasReleaseSigning) {
-                storeFile = file(keystorePath)
-                storePassword = keystorePassword
-                alias = keyAlias
-                keyPassword = keyPassword
+                storeFile = file(releaseKeystorePath)
+                storePassword = releaseKeystorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
             }
         }
     }
