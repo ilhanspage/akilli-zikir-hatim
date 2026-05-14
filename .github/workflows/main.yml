@@ -30,7 +30,6 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-          cache: gradle
 
       - name: Set up Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
@@ -38,7 +37,6 @@ jobs:
           gradle-version: "8.9"
 
       - name: Prepare release signing
-        id: signing
         shell: bash
         env:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
@@ -46,7 +44,7 @@ jobs:
           ANDROID_KEY_ALIAS_SECRET: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD_SECRET: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          set -euo pipefail
+          set -e
           cd "$ANDROID_PROJECT_DIR"
           mkdir -p app/keystore
 
@@ -56,8 +54,6 @@ jobs:
             echo "ANDROID_KEYSTORE_PASSWORD=$ANDROID_KEYSTORE_PASSWORD_SECRET" >> "$GITHUB_ENV"
             echo "ANDROID_KEY_ALIAS=$ANDROID_KEY_ALIAS_SECRET" >> "$GITHUB_ENV"
             echo "ANDROID_KEY_PASSWORD=$ANDROID_KEY_PASSWORD_SECRET" >> "$GITHUB_ENV"
-            echo "generated=false" >> "$GITHUB_OUTPUT"
-            echo "Using release keystore from GitHub Secrets."
           else
             STORE_PASS="$(openssl rand -base64 30 | tr -d '=+/ ' | cut -c1-24)"
             KEY_PASS="$(openssl rand -base64 30 | tr -d '=+/ ' | cut -c1-24)"
@@ -75,8 +71,6 @@ jobs:
 
             {
               echo "BU DOSYAYI VE upload-keystore.jks DOSYASINI KAYBETMEYIN."
-              echo "Google Play'e ilk AAB bu upload key ile yuklenirse, sonraki guncellemeler icin ayni key gerekir."
-              echo ""
               echo "ANDROID_KEYSTORE_PASSWORD=$STORE_PASS"
               echo "ANDROID_KEY_ALIAS=$GENERATED_KEY_ALIAS"
               echo "ANDROID_KEY_PASSWORD=$KEY_PASS"
@@ -86,26 +80,43 @@ jobs:
             echo "ANDROID_KEYSTORE_PASSWORD=$STORE_PASS" >> "$GITHUB_ENV"
             echo "ANDROID_KEY_ALIAS=$GENERATED_KEY_ALIAS" >> "$GITHUB_ENV"
             echo "ANDROID_KEY_PASSWORD=$KEY_PASS" >> "$GITHUB_ENV"
-            echo "generated=true" >> "$GITHUB_OUTPUT"
-            echo "Generated a new upload keystore."
           fi
 
-      - name: Build Debug APK
+      - name: Build Debug APK with log file
         shell: bash
         run: |
-          gradle -p "$ANDROID_PROJECT_DIR" assembleDebug --stacktrace
+          set +e
+          mkdir -p build-logs
+          gradle -p "$ANDROID_PROJECT_DIR" assembleDebug --console=plain --no-daemon > build-logs/debug-build.log 2>&1
+          STATUS=$?
+          echo "DEBUG_BUILD_STATUS=$STATUS" >> "$GITHUB_ENV"
+          echo "---- DEBUG BUILD LAST 200 LINES ----"
+          tail -n 200 build-logs/debug-build.log
+          exit $STATUS
 
-      - name: Build Release APK and AAB
+      - name: Build Release APK and AAB with log file
+        if: success()
         shell: bash
         run: |
-          gradle -p "$ANDROID_PROJECT_DIR" assembleRelease bundleRelease --stacktrace
+          set +e
+          mkdir -p build-logs
+          gradle -p "$ANDROID_PROJECT_DIR" assembleRelease bundleRelease --console=plain --no-daemon > build-logs/release-build.log 2>&1
+          STATUS=$?
+          echo "RELEASE_BUILD_STATUS=$STATUS" >> "$GITHUB_ENV"
+          echo "---- RELEASE BUILD LAST 200 LINES ----"
+          tail -n 200 build-logs/release-build.log
+          exit $STATUS
 
-      - name: Show output files
-        shell: bash
-        run: |
-          find "$ANDROID_PROJECT_DIR/app/build/outputs" -type f \( -name "*.apk" -o -name "*.aab" \) -print -exec ls -lh {} \;
+      - name: Upload build logs always
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BUILD_LOGS_SEND_TO_CHATGPT
+          path: build-logs/*.log
+          if-no-files-found: warn
 
       - name: Upload Debug APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: akilli-zikir-debug-apk
@@ -113,6 +124,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Upload Release APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: akilli-zikir-release-apk
@@ -120,6 +132,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Upload Release AAB for Play Console
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: akilli-zikir-release-aab-play-console
@@ -127,12 +140,11 @@ jobs:
           if-no-files-found: error
 
       - name: Upload generated keystore backup
-        if: steps.signing.outputs.generated == 'true'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: SAVE-THIS-upload-keystore-and-credentials
           path: |
             android/AkilliZikirHatim/app/keystore/upload-keystore.jks
             android/AkilliZikirHatim/app/keystore/KEYSTORE_CREDENTIALS_SAVE_THIS.txt
-          retention-days: 7
-          if-no-files-found: error
+          if-no-files-found: warn
