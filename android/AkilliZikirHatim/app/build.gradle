@@ -21,8 +21,8 @@ android {
         applicationId = "com.ilhanbeluk.akillizikirhatim"
         minSdk = 23
         targetSdk = 35
-        versionCode = 1273
-        versionName = "1.2.73"
+        versionCode = 1274
+        versionName = "1.2.74"
         buildConfigField("String", "WEB_URL", "\"https://zikir.next-sosyal.com/app/\"")
     }
 

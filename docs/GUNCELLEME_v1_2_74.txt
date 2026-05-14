@@ -1,0 +1,26 @@
+Akıllı Zikir & Hatim v1.2.74
+
+Konu: GitHub Actions Kotlin / Billing KTX Sürüm Uyumu Fix
+
+GitHub Actions logundaki hata:
+- billing-ktx-8.3.0 Kotlin metadata 2.2.0 ile derlenmiş.
+- Projede Kotlin plugin 2.0.21 olduğu için "expected version is 2.0.0" hatası oluştu.
+- Sonuç: :app:compileDebugKotlin aşamasında Internal compiler error.
+
+Yapılan düzeltme:
+- android/AkilliZikirHatim/build.gradle içinde Kotlin plugin 2.2.10 yapıldı.
+- android/AkilliZikirHatim/app/build.gradle içinde v1.2.73 signing alias fix korunmuştur.
+- Android sürümü 1.2.74 / versionCode 1274 yapıldı.
+
+Değişen dosyalar:
+- android/AkilliZikirHatim/build.gradle
+- android/AkilliZikirHatim/app/build.gradle
+
+Dokunulmayan alanlar:
+- Web/PWA app.js
+- CSS
+- Admin
+- API
+- Yasal metinler
+- Kullanıcı verileri
+- Billing Kotlin iş mantığı
