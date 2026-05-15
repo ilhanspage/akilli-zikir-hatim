@@ -1,0 +1,25 @@
+Akıllı Zikir & Hatim v1.2.77
+
+Konu: Google Play paket adı doğrulama sorunu için Android packageId değişimi
+
+Sorun:
+- Google Play Console, `com.ilhanbeluk.akillizikirhatim` paket adı için F6:2E:... parmak izli mevcut bir ortak anahtar istedi.
+- Bizim APK/AAB farklı ve yeni upload key ile imzalandığı için "Yüklenen APK'nin imzası farklı" hatası verdi.
+- F6 özel anahtarı elimizde yoksa bu paket adını doğrulamak mümkün değildir.
+
+Çözüm:
+- Android package/applicationId yeni ve temiz bir paket adına alındı:
+  com.ilhanbeluk.akillizikirhatim.app
+
+Yapılan değişiklikler:
+- app/build.gradle içinde namespace değişti.
+- app/build.gradle içinde applicationId değişti.
+- Kotlin package declaration değerleri yeni packageId ile güncellendi.
+- Android sürümü 1.2.77 / versionCode 1277 yapıldı.
+
+Google Play'de bundan sonra kullanılacak paket adı:
+com.ilhanbeluk.akillizikirhatim.app
+
+Önemli:
+- Eski paket adı alanına artık com.ilhanbeluk.akillizikirhatim yazmayın.
+- Yeni AAB/APK GitHub Actions ile üretildikten sonra Play Console'da yeni paket adı olarak com.ilhanbeluk.akillizikirhatim.app girin.

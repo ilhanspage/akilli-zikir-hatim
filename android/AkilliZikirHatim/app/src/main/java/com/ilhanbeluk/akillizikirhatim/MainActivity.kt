@@ -1,4 +1,4 @@
-package com.ilhanbeluk.akillizikirhatim
+package com.ilhanbeluk.akillizikirhatim.app
 
 import android.annotation.SuppressLint
 import android.app.Activity

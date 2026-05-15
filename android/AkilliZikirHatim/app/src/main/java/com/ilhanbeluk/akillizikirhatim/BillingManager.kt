@@ -1,4 +1,4 @@
-package com.ilhanbeluk.akillizikirhatim
+package com.ilhanbeluk.akillizikirhatim.app
 
 import android.app.Activity
 import com.android.billingclient.api.AcknowledgePurchaseParams
