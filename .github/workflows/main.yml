@@ -46,6 +46,7 @@ jobs:
         run: |
           set -e
           cd "$ANDROID_PROJECT_DIR"
+          rm -rf app/keystore
           mkdir -p app/keystore
 
           if [ -n "${ANDROID_KEYSTORE_BASE64:-}" ] && [ -n "${ANDROID_KEYSTORE_PASSWORD_SECRET:-}" ] && [ -n "${ANDROID_KEY_ALIAS_SECRET:-}" ] && [ -n "${ANDROID_KEY_PASSWORD_SECRET:-}" ]; then
@@ -56,24 +57,19 @@ jobs:
             echo "ANDROID_KEY_PASSWORD=$ANDROID_KEY_PASSWORD_SECRET" >> "$GITHUB_ENV"
           else
             STORE_PASS="$(openssl rand -base64 30 | tr -d '=+/ ' | cut -c1-24)"
-            KEY_PASS="$(openssl rand -base64 30 | tr -d '=+/ ' | cut -c1-24)"
+            KEY_PASS="$STORE_PASS"
 
-            keytool -genkeypair \
-              -v \
-              -keystore app/keystore/upload-keystore.jks \
-              -storepass "$STORE_PASS" \
-              -keypass "$KEY_PASS" \
-              -alias "$GENERATED_KEY_ALIAS" \
-              -keyalg RSA \
-              -keysize 2048 \
-              -validity 10000 \
-              -dname "CN=Ilhan BELUK, OU=Akilli Zikir Hatim, O=Ilhan BELUK Yazilim, L=Gaziantep, ST=Gaziantep, C=TR"
+            keytool -genkeypair               -v               -keystore app/keystore/upload-keystore.jks               -storepass "$STORE_PASS"               -keypass "$KEY_PASS"               -alias "$GENERATED_KEY_ALIAS"               -keyalg RSA               -keysize 2048               -validity 10000               -dname "CN=Ilhan BELUK, OU=Akilli Zikir Hatim, O=Ilhan BELUK Yazilim, L=Gaziantep, ST=Gaziantep, C=TR"
 
             {
               echo "BU DOSYAYI VE upload-keystore.jks DOSYASINI KAYBETMEYIN."
+              echo "Google Play'e ilk AAB bu upload key ile yuklenirse, sonraki guncellemeler icin ayni key gerekir."
+              echo ""
               echo "ANDROID_KEYSTORE_PASSWORD=$STORE_PASS"
               echo "ANDROID_KEY_ALIAS=$GENERATED_KEY_ALIAS"
               echo "ANDROID_KEY_PASSWORD=$KEY_PASS"
+              echo ""
+              echo "Not: Otomatik uretilen key icin store password ve key password aynidir."
             } > app/keystore/KEYSTORE_CREDENTIALS_SAVE_THIS.txt
 
             echo "ANDROID_KEYSTORE_PATH=$PWD/app/keystore/upload-keystore.jks" >> "$GITHUB_ENV"
