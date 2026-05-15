@@ -1,0 +1,31 @@
+Akıllı Zikir & Hatim v1.2.76
+
+Konu: Android APK açılışta kapanma / launch crash fix
+
+Belirti:
+- Release APK telefona kurulduktan sonra açılır açılmaz kapanıyordu.
+
+Muhtemel kök sebep:
+- MainActivity AppCompatActivity kullanıyordu.
+- Uygulama teması native Android tema olduğu için AppCompat theme uyumsuzluğu açılışta crash oluşturabiliyordu.
+
+Yapılan düzeltme:
+- MainActivity artık AppCompatActivity yerine sade android.app.Activity kullanır.
+- AppCompat dependency app/build.gradle içinden kaldırıldı.
+- WebView ayarları sade ve güvenli şekilde korunmuştur.
+- Back tuşunda WebView geçmişi varsa geri gider.
+- onDestroy içinde Billing ve WebView güvenli temizlenir.
+- Android sürüm 1.2.76 / versionCode 1276 yapıldı.
+
+Değişen dosyalar:
+- android/AkilliZikirHatim/app/src/main/java/com/ilhanbeluk/akillizikirhatim/MainActivity.kt
+- android/AkilliZikirHatim/app/build.gradle
+
+Dokunulmayan alanlar:
+- Web/PWA app.js
+- CSS
+- Admin
+- API
+- Yasal metinler
+- Sayaç / Zikir / Dua / Hatim verileri
+- BillingManager iş mantığı

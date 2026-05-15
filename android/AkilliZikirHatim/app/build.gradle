@@ -21,8 +21,8 @@ android {
         applicationId = "com.ilhanbeluk.akillizikirhatim"
         minSdk = 23
         targetSdk = 35
-        versionCode = 1274
-        versionName = "1.2.74"
+        versionCode = 1276
+        versionName = "1.2.76"
         buildConfigField("String", "WEB_URL", "\"https://zikir.next-sosyal.com/app/\"")
     }
 
@@ -72,6 +72,5 @@ android {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.15.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.android.billingclient:billing-ktx:8.3.0")
 }

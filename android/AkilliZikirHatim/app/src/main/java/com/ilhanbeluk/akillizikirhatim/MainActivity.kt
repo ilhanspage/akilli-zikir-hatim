@@ -1,15 +1,15 @@
 package com.ilhanbeluk.akillizikirhatim
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     private lateinit var webView: WebView
     private lateinit var billingManager: BillingManager
 
@@ -26,16 +26,36 @@ class MainActivity : AppCompatActivity() {
 
         webView.webViewClient = WebViewClient()
         webView.webChromeClient = WebChromeClient()
+
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
+        webView.settings.databaseEnabled = true
         webView.settings.cacheMode = WebSettings.LOAD_DEFAULT
         webView.settings.mediaPlaybackRequiresUserGesture = false
+        webView.settings.loadsImagesAutomatically = true
+        webView.settings.useWideViewPort = true
+        webView.settings.loadWithOverviewMode = true
+
         webView.addJavascriptInterface(BillingBridge(), "AkilliZikirBilling")
         webView.loadUrl(BuildConfig.WEB_URL)
     }
 
+    override fun onBackPressed() {
+        if (::webView.isInitialized && webView.canGoBack()) {
+            webView.goBack()
+            return
+        }
+        super.onBackPressed()
+    }
+
     override fun onDestroy() {
-        billingManager.destroy()
+        if (::billingManager.isInitialized) {
+            billingManager.destroy()
+        }
+        if (::webView.isInitialized) {
+            webView.removeJavascriptInterface("AkilliZikirBilling")
+            webView.destroy()
+        }
         super.onDestroy()
     }
 
