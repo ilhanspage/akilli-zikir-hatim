@@ -1,0 +1,23 @@
+Akıllı Zikir & Hatim v1.2.75
+
+Konu: GitHub Actions Keystore Key Password Fix
+
+Logdaki hata:
+- :app:packageRelease aşamasında keystore okunamadı.
+- Hata: Get Key failed: Given final block not properly padded.
+
+Kök sebep:
+- Workflow otomatik keystore üretirken store password ve key password farklı oluşturulmuştu.
+- Android signing sırasında key password uyuşmadığı için release APK/AAB imzalama patladı.
+
+Yapılan düzeltme:
+- Otomatik üretilen keystore için KEY_PASS = STORE_PASS yapıldı.
+- Prepare release signing adımı başlamadan önce app/keystore klasörü temizlenir.
+- Workflow aynı şekilde debug APK, release APK ve Play Console AAB üretmeye devam eder.
+
+Değişen dosya:
+- .github/workflows/main.yml
+
+Önemli:
+- Eski hatalı keystore artifact'ini kullanmayın.
+- Yeni başarılı build sonrası SAVE-THIS-upload-keystore-and-credentials artifact'ini indirip saklayın.
